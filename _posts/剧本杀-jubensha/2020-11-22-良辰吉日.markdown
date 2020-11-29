@@ -1,12 +1,12 @@
 ---
 layout: post
 title: 博客模板
-date:  2020-11-25 01:30:00 +0800
-description: Hello World！
+date:  2020-11-22 20:00:00 +0800
+description: 良辰吉日总结
 img: post-1.jpg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
-others: true
+jubensha: true
 ---
 
 {{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
