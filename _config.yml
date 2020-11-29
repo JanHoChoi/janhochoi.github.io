@@ -83,6 +83,10 @@ links1:
     url:          /blog/unity_shader
     type:         unity_shader
     external:     false
+  - name:         剧本杀
+    url:          /blog/jubensha
+    type:         jubensha
+    external:     false
   - name:         其他
     url:          /blog/others
     type:         others
@@ -90,7 +94,8 @@ links1:
 
 blog_1:    recent
 blog_2:    unity_shader
-blog_3:    others
+blog_3:    jubensha
+blog_4:    others
 
 
 
