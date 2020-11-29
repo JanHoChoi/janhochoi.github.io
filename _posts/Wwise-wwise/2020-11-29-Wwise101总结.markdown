@@ -1,0 +1,80 @@
+---
+layout: post
+title: Wwise101笔记总结
+date:  2020-11-29 22:45:00 +0800
+description: Wwise101学习总结
+img: post-1.jpg # Add image post (optional)
+tags: [Wwise]
+author: # Add name author (optional)
+wwise: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Wwise101学习总结
+
+## Lesson 1
+
+### 主要内容
+
+简单的介绍了一下Wwise的使用过程。让读者完成了一系列步骤，最终在游戏里面发声。
+
+### 知识点
+
+1. Layouts
+
+   工具栏的Layouts选项框可以切换不同的布局。不同布局有不同的视图，完成不同的功能。
+
+   - Designer（F5）
+
+     左侧是Project Explorer。给我的感觉是列举了当前Wwise工程的所有建好的资源，像Unity的Hierarchy窗口。包括了导入好的Audio，定义好的Events，生成的SoundBanks等等。
+
+   - Profiler（F6）
+
+     Capture Log视图显示游戏中生成的信息（比如Event等）。需要先把Wwise和游戏连接起来。顶部时间栏右边第一个按钮用于连接Wwise和游戏。
+
+   - SoundBank（F7）
+
+     用于发布对应的Event，有点像配置完成后生成一个二进制文件的感觉。
+
+2. 游戏与Wwise互动的方式
+
+   **游戏通过game calls向Wwise发送消息，然后触发Wwise中声音相关的调用。消息中主要有Events，游戏通过Events告诉Wwise，从而触发声音或修改声音属性或停止播放声音。Capture Log中可以看到有一列Game Object列，表明这个消息是由游戏中哪个实体关联。比如多个角色同时调用了开枪的事件，要让Wwise知道具体哪个角色开了枪，才能正确发声。**
+
+3. Events的组织方式
+
+   点开Designer布局左侧Project Explorer视图的Events选项页，会看到一些Work Unit（等价于Wwise工程结构的XML文件）。每个Work Unit可以装入各个人设计的事件，到了开发后期，再把Work Unit整合。右键某个Work Unit可以创建Events。
+
+   > Event的命名很重要。Event名字与游戏调用game call中的名字完全符合才可以触发相应的事件。对象的命名是不区分大小写的，自动会转换成小写去处理。
+
+   点击某个Event，中部的Event Editor有一个**Notes栏，可以写注释**。
+   
+4. 导入声音
+
+   在Project Explorer的Audio选项卡导入。
+
+   ![创建Sound SFX](../../assets/img/image-20201129234417556.png)
+
+   Sound SFX主要用于播音效；Sound Voice主要用于播语音对白。
+
+   创建后，对象名字红色表示没有音频文件关联，其他颜色正常。右键可以Import Audio Files（Shift+I）。导入的时候，**可以直接导最高质量的声音，在后期再一次性通过Wwise优化文件的体积**。
+
+5. Event和SFX如何关联起来
+
+   选中Event后，在Event Editor中右键可以创建一系列的Action比如Play（播放）Action。创建好后，把Audio对象拖到Target中，即可。
+
+   ![image-20201129235727991](../../assets/img/image-20201129235727991.png)
+
+   如上图所示，当收到fire_shotgun_player的Event后，会Play一下shotgun_blast的声音资源。
+
+6. 发布
+
+   操作了Event后，还需要把Event添加到SoundBank中去。创建一个SoundBank并命名，SoundBank通过勾选可以装上多个事件。在游戏的代码中，需要通过路径+命名找到SoundBank资源并加载，才能正常发送game call。
+
+| 术语名                | 术语作用                                                     |
+| --------------------- | ------------------------------------------------------------ |
+| view（视图）          | Wwise软件打开后的不同的窗体，每个窗体都把一部分的功能可视化给用户。 |
+| game call（游戏调用） | 游戏引擎通过game call，让Wwise执行某些Event事件。            |
+| event（事件）         | 由Wwise定义，表达了某种声音的行为，比如play某些音效。        |
+| action（动作）        | Event通过Action去对Audio对象进行不同的操作。                 |
+| soundbank             | 由Wwise定义的数据，包含了事件、声音等等。在游戏中按需加载，从而调用game call。 |

@@ -1,0 +1,20 @@
+---
+layout: post
+title: Wwise学习资源
+date:  2020-11-29 22:45:00 +0800
+description: Wwise中间件学习资源
+img: post-1.jpg # Add image post (optional)
+tags: [Wwise]
+author: # Add name author (optional)
+wwise: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Wwise学习资源
+
+知乎优质回答 - [知乎](https://www.zhihu.com/question/20496066/answer/124390845)
+
+Wwise 101 - [官网](https://www.audiokinetic.com/zh/courses/wwise101/)
+
+配套视频 - [B站](https://space.bilibili.com/17571301/video)
