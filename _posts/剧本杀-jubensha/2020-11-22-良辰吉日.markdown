@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 博客模板
+title: 良辰吉日总结
 date:  2020-11-22 20:00:00 +0800
 description: 良辰吉日总结
 img: liangchenjiri.jpg # Add image post (optional)
