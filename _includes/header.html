@@ -16,6 +16,7 @@
 				 {% endfor %}
 			 {% endif %}
 
+			 {% assign count = 0 %}
 			 {% if link.type == site.blog_2 %}
 				 {% for post in site.posts %}
 				   {% if post.unity_shader%}
@@ -24,22 +25,25 @@
 				 {% endfor %}
 			 {% endif %}
 
+			 {% assign count = 0 %}
 			 {% if link.type == site.blog_3 %}
 				{% for post in site.posts %}
-				   {% if post.others%}
+				   {% if post.wwise%}
 						{% assign count = count | plus: 1 %}
 				   {% endif %}
 				 {% endfor %}
 			 {% endif %}
 
+			 {% assign count = 0 %}
 			 {% if link.type == site.blog_4 %}
 				{% for post in site.posts %}
-				   {% if post.others%}
+				   {% if post.jubensha%}
 						{% assign count = count | plus: 1 %}
 				   {% endif %}
 				 {% endfor %}
 			 {% endif %}
 
+			 {% assign count = 0 %}
 			 {% if link.type == site.blog_5 %}
 				{% for post in site.posts %}
 				   {% if post.others%}
