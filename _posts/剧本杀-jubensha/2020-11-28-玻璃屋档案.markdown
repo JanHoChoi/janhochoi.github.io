@@ -3,7 +3,7 @@ layout: post
 title: 玻璃屋档案总计
 date:  2020-11-28 20:30:00 +0800
 description: 玻璃屋档案总结
-img: post-1.jpg # Add image post (optional)
+img: boliwudangan.jpg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
 jubensha: true
