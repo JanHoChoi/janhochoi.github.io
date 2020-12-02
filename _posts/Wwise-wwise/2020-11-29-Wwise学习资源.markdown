@@ -3,7 +3,7 @@ layout: post
 title: Wwise学习资源
 date:  2020-11-29 22:45:00 +0800
 description: Wwise中间件学习资源
-img: post-1.jpg # Add image post (optional)
+img: wwise_logo.jpg # Add image post (optional)
 tags: [Wwise]
 author: # Add name author (optional)
 wwise: true

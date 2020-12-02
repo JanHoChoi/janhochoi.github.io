@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Wwise101笔记总结
+title: Wwise101学习总结 - Lesson 1
 date:  2020-11-29 22:45:00 +0800
 description: Wwise101学习总结
-img: post-1.jpg # Add image post (optional)
+img: wwise_logo.jpg # Add image post (optional)
 tags: [Wwise]
 author: # Add name author (optional)
 wwise: true
@@ -11,15 +11,13 @@ wwise: true
 
 {{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
 
-# Wwise101学习总结
+# Wwise101学习总结 - Lesson 1
 
-## Lesson 1
-
-### 主要内容
+## 主要内容
 
 简单的介绍了一下Wwise的使用过程。让读者完成了一系列步骤，最终在游戏里面发声。
 
-### 知识点
+## 知识点
 
 1. Layouts
 
