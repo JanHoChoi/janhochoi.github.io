@@ -1,0 +1,43 @@
+---
+layout: post
+title: Wwise101学习总结 - Lesson 2
+date:  2020-12-02 17:30:00 +0800
+description: Wwise101学习总结
+img: wwise_logo.jpg # Add image post (optional)
+tags: [Wwise]
+author: # Add name author (optional)
+wwise: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Wwise101学习总结 - Lesson 2
+
+## 主要内容
+
+简单的介绍了一下Wwise怎么调整声音，比如让声音随机播放。
+
+## 知识点
+
+1. 除了创建SFX后，再导入音频资源，也可以直接把音频资源拖拽到Work Unit中，让Wwise自动创建SFX对象。同一个wav可以用在不同的SFX对象上，一声多用；
+
+2. 调整SFX的音高pitch。相邻一度的音高差为 100 音分，一个八度音程共有 1200 个音分。Pitch 参数的默认值为 0，意味着对象上关联的音频内容将按照其原本的音高来播放。
+
+   ![image-20201209211731312](../../assets/img/image-20201209211731312.png)
+
+   点击红框小白点可以调整音高。
+
+3. 点下图的图标，可以调整SFX对象，比如设它的fade in、fade out方式，或者播放起始点等。
+
+   ![image-20201209213354363](../../assets/img/image-20201209213354363.png)
+
+4. 点下图红框，可以显示该Action的所有相关属性，比如play，就有delay属性。
+
+   ![image-20201209232548899](../../assets/img/image-20201209232548899.png)
+
+5. 把文件夹拖进Wwise的某个Work Unit上，会自动打开Audio File Importer窗口。
+
+| 术语名 | 术语作用                                                     |
+| ------ | ------------------------------------------------------------ |
+| pitch  | 音高，钢琴相差1度则音高差100；通过音高变化，可以通过一个SFX，创造出大量不同声音的感觉，而且节省内存。 |
+
