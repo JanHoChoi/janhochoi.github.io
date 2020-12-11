@@ -35,9 +35,11 @@ wwise: true
 
    ![image-20201209232548899](../../assets/img/image-20201209232548899.png)
 
-5. 把文件夹拖进Wwise的某个Work Unit上，会自动打开Audio File Importer窗口。
+5. 把文件夹拖进Wwise的某个Work Unit上，会自动打开Audio File Importer窗口。其中文件夹本身在导入层级结构后也会成为Virtual Folder对象。Virtual Folder本身没啥用，只是单纯用来组织。可以在Audio File Import把文件夹对象类型改成其他对象，比如Random Container（作用见术语表）。
 
-| 术语名 | 术语作用                                                     |
-| ------ | ------------------------------------------------------------ |
-| pitch  | 音高，钢琴相差1度则音高差100；通过音高变化，可以通过一个SFX，创造出大量不同声音的感觉，而且节省内存。 |
+| 术语名           | 术语作用                                                     |
+| ---------------- | ------------------------------------------------------------ |
+| pitch            | 音高，钢琴相差1度则音高差100；通过音高变化，可以通过一个SFX，创造出大量不同声音的感觉，而且节省内存。 |
+| Virtual Folder   | 默认情况下文件夹将会作为一个Virtual Folder（虚拟文件夹）导入，Virtual Folder纯粹是一种管理 Wwise Hierarchy（对象层级）内对象的方式。 |
+| Random Container | Random Container对象可以视为有附加功能的文件夹。Random Container可以在选中后用 Transport Control的播放按钮来播放，这个时候 Random Container会在内装的对象中随机选中一个并播放。 |
 
