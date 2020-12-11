@@ -1,0 +1,50 @@
+---
+layout: post
+title: Wwise101学习总结 - Lesson 3
+date:  2020-12-11 16:30:00 +0800
+description: Wwise101学习总结
+img: wwise_logo.jpg # Add image post (optional)
+tags: [Wwise]
+author: # Add name author (optional)
+wwise: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Wwise101学习总结 - Lesson 3
+
+## 主要内容
+
+介绍了Game Sync（游戏同步器）相关的一些组件功能及其使用方法。
+
+## 知识点
+
+1. Game Syncs面板（与Events页签并列）可以设置多种类型（如Switch、State等）。
+
+2. Game Syncs页签中创建好的Switch Group和Switch，点击他们，右侧的Property Editor并不能看到多少信息，这些对象的首要用途只是接收游戏引擎传来的调用而已。
+
+   而Audio页签的Switch Container需要关联到某个特定的Switch Group上。然后把左侧的SFX对象（或者容器）拖到右边的Switch对象上即可。表示不同switch时，该容器播放哪个声音。
+
+   ![image-20201211171344018](../../assets/img/image-20201211171344018.png)
+
+   点开某个Event后，可以把该Switch Container直接拖过去，然后试听。也可以通过最下方的Switches选项，调节Switch再试听。
+
+   ![image-20201211173357881](../../assets/img/image-20201211173357881.png)
+
+3. Game Syncs页签创建一个Game Parameters，可以设定一个值，这个值有最小值最大值范围可以设置。
+
+   而在Audio页签中，只需要在Sound Property Editor的RTPC（Real Time Parameter Control）页签下点击下图红框的[>>]，可以选择该SFX对象被Game Parameter影响的属性。X Axis下面的[>>]则用于选择起作用的Game Parameter。
+
+   ![image-20201211185405924](../../assets/img/image-20201211185405924.png)
+
+   双击红线可以添加控制点。右键控制点可以设置曲线。
+
+   一个Game Parameter也可以关联多个属性。
+
+| 术语名           | 术语作用                                                     |
+| ---------------- | ------------------------------------------------------------ |
+| Switch Group     | 一种对象，命名需要音频与程序共同决定，程序可以设置Switch Group的当前Switch值，从而改变声音。 |
+| Switch           | 一个Switch Group可以拥有多个不同的Switch，表示不同的状态。Switch本身只能表示状态，不能自己发声，发声仍需要用Event触发。 |
+| Switch Container | 文件夹的一种带功能的特殊对象，Switch Container根据不同的状态播放某一个声音。一个Switch Container只能关联到一个Switch Group中。 |
+|                  |                                                              |
+
