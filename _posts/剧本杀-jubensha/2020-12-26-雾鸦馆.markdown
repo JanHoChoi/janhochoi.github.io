@@ -3,7 +3,7 @@ layout: post
 title: 雾鸦馆总结
 date:  2020-12-26 14:00:00 +0800
 description: 总结
-img: wuyaguan.jpeg # Add image post (optional)
+img: wuyaguan.jpg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
 jubensha: true
