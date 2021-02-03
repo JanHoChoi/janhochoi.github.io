@@ -3,7 +3,7 @@ layout: post
 title: 特拉多亚总结
 date:  2021-01-22 20:00:00 +0800
 description: 总结
-img: teladuoya.jpeg # Add image post (optional)
+img: teladuoya.jpg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
 jubensha: true
