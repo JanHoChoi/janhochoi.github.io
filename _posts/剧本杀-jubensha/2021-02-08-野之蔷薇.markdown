@@ -3,7 +3,7 @@ layout: post
 title: 野の蔷薇总结
 date:  2021-02-08 20:00:00 +0800
 description: 总结
-img: yezhiqiangwei.jpeg # Add image post (optional)
+img: yezhiqiangwei.jpg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
 jubensha: true
