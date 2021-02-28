@@ -1,0 +1,32 @@
+---
+layout: post
+title: 七月十三日总结
+date:  2021-03-01 13:00:00 +0800
+description: 总结
+img: qiyueshisanri.jpg # Add image post (optional)
+tags: [剧本杀]
+author: # Add name author (optional)
+jubensha: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# 七月十三日
+
+## 评价
+
+店家：火烈鸟
+
+- 推理：10/10
+
+还原+叙诡，罗莱特牛逼！
+
+- 剧情：10/10
+
+跌宕起伏的故事，剧情合理，人物行为逻辑也合理。
+
+- 其他：9/10
+
+龙哥带的可以，复盘的明明白白。可惜有队友挂机。
+
+## 总结
