@@ -1,0 +1,38 @@
+---
+layout: post
+title: 谁动了我的奶酪总结
+date:  2021-03-19 20:00:00 +0800
+description: 总结
+img: sheidonglewodenailao.jpeg # Add image post (optional)
+tags: [剧本杀]
+author: # Add name author (optional)
+jubensha: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# 谁动了我的奶酪
+
+## 评价
+
+店家：火烈鸟
+
+- 推理：9/10
+
+设定流推理+一点叙诡。一开始日记本中，阅读顺序大家默认是从左往右读的，而在后续线索出现后才发现应该从右往左读。再加上经典的一开始从外观对号入座人物，后续告知存在灵魂肉体交换的情况，再盘每个人的真实身份。
+
+- 剧情：10/10
+
+故事不错，挺泪目的，引人反思。
+
+- 其他：8/10
+
+有破冰小游戏，搜证小游戏，机制玩起来比较轻松愉快。队友可爱，主持人可爱。
+
+## 总结
+
+1. 线索还是得亲眼看，特别是这次的实物线索，能说明阅读顺序是反转的。如果自己不亲眼看，可能会遗漏细节。
+
+2. 先盘简单的东西，建立逻辑基点。再以此慢慢盘。
+
+3. 用外表确定的身份切忌对号入座。
