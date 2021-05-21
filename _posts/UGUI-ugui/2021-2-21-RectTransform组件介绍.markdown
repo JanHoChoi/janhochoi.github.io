@@ -6,7 +6,7 @@ description: 总结
 img: 404.jpeg # Add image post (optional)
 tags: [UGUI]
 author: # Add name author (optional)
-others: true
+ugui: true
 ---
 
 {{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
