@@ -1,0 +1,93 @@
+---
+layout: post
+title: Canvas组件介绍
+date:  2021-02-21 09:45:00 +0800
+description: 总结
+img: 404.jpeg # Add image post (optional)
+tags: [UGUI]
+author: # Add name author (optional)
+ugui: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Canvas
+
+## Canvas Scaler
+
+Canvas Scaler组件主要用来做整体的适配。根据手机不同分辨率调整画布的宽高。
+
+![image.png](../../assets/img/canvas_1.png)
+
+UI Scale Mode有三种，其他两种比较少见。这里只记录Scale With Screen Size模式下Canvas是如何根据屏幕大小缩放的。
+
+下面的例子都和图中一样，参考分辨率设为了1334x750。
+
+### Screen Match Mode
+
+Screen Match Mode有三种，分别是Match Width Or Height、Expand、Shrink。
+
+其中Expand和Shrink比较少用到。
+
+计算Canvas尺寸的源码如下。
+
+```
+            switch (m_ScreenMatchMode)
+            {
+                case ScreenMatchMode.MatchWidthOrHeight:
+                {
+                    float logWidth = Mathf.Log(screenSize.x / m_ReferenceResolution.x, kLogBase);
+                    float logHeight = Mathf.Log(screenSize.y / m_ReferenceResolution.y, kLogBase);
+                    float logWeightedAverage = Mathf.Lerp(logWidth, logHeight, m_MatchWidthOrHeight);
+                    scaleFactor = Mathf.Pow(kLogBase, logWeightedAverage);
+                    break;
+                }
+                case ScreenMatchMode.Expand:
+                {
+                    scaleFactor = Mathf.Min(screenSize.x / m_ReferenceResolution.x, screenSize.y / m_ReferenceResolution.y);
+                    break;
+                }
+                case ScreenMatchMode.Shrink:
+                {
+                    scaleFactor = Mathf.Max(screenSize.x / m_ReferenceResolution.x, screenSize.y / m_ReferenceResolution.y);
+                    break;
+                }
+            }
+```
+
+#### Match Width Or Height
+
+当选择该模式时，一般下方的match值会设为0或1。
+
+![image.png](../../assets/img/canvas_2.png)
+
+当match=0时，Canvas尺寸以屏幕分辨率为起始，按宽度进行放大或缩小，直至Canvas宽度=参考分辨率宽度。当match=1时，Canvas则按高度进行放大或缩小，直至Canvas高度=参考分辨率高度。
+
+假设当前屏幕尺寸为750 x 1334。
+
+当match=0时，Canvas尺寸为750/(750/1334) x 1334/(750/1334) = 1334 x 2372.74。
+
+当match=1时，Canvas尺寸为750/(1334/750) x 1334/(1334/750) = 421.66 x 750。
+
+当match=0.5时，按上述公式计算。lerp(log2(750/1334), log2(1334/750), 0.5) = 0。而2的0次方=1，所以Canvas尺寸为750/1 x 1334/1 = 750 x 1334。
+
+#### Expand & Shrink
+
+Expand和Shrink类似，一起介绍。项目目前用不到这两个模式，写下只是单纯记录一下。
+
+Expand模式下，当屏幕分辨率比参考分辨率更大（更小）时，Canvas尺寸会以屏幕分辨率为起始，缩小（增大），直至宽或高仅有一边与参考分辨率重合。此模式下，Canvas一定属于屏幕范围内的一部分，不能超过屏幕。观感如下图所示。
+
+![image.png](../../assets/img/canvas_3.png)
+
+假设当前屏幕尺寸为1000x500，则ScaleFactor = min(1000/1334, 500/750) = 0.6667，即Canvas的尺寸为(1000x500)/ScaleFactor即1500x750。
+
+Shrink模式则相反，当屏幕分辨率比参考分辨率更大（更小）时，Canvas尺寸会以屏幕分辨率为起始，缩小（增大），直至宽或高最后一边与参考分辨率重合。此模式下，Canvas会超过屏幕。观感如下图所示。
+
+![image.png](../../assets/img/canvas_4.png)
+
+假设当前屏幕尺寸为1000x500，则ScaleFactor = max(1000/1334, 500/750) = 0.7496，即Canvas的尺寸为(1000x500)/ScaleFactor即1334x667。
+
+### 参考资料
+
+[UGUI Manual](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-CanvasScaler.html)
+
