@@ -13,11 +13,11 @@ ugui: true
 
 # RectTransform
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_1.png)
+![image.png](../../assets/img/rectTransform_1.png)
 
 RectTransform比较特殊的概念是Anchors和Pivot。
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_2.png)
+![image.png](../../assets/img/rectTransform_2.png)
 
 Scene视图中蓝色圈圈是中心点Pivot，4个白色三角形是4个锚点Anchors。4个锚点可以通过鼠标拖动分别移动位置，也可以点中间拖动同时移动4个锚点。蓝色Pivot也可以选中随便拖。
 
@@ -29,31 +29,31 @@ Scene视图中蓝色圈圈是中心点Pivot，4个白色三角形是4个锚点An
 
 4个锚点Anchor决定的是该RectTransform怎么“锚”在它的父RectTransform上。
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_3.png)
+![image.png](../../assets/img/rectTransform_3.png)
 
 minXY与maxXY四个值的物理意义如上图所示，决定了4个锚点在父对象的哪个位置。如果在Scene视图拖动时，4个值的取值范围是\[0,1]，但是在代码或是Inspector里面可以随意输入值。**无论父对象的大小怎么变，4个Anchor相对父对象的相对位置是不变的。**
 
 - 当min X = max X且min Y = max Y时，即4个锚点在同一点时，
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_4.png)
+![image.png](../../assets/img/rectTransform_4.png)
 
 此时Inspector面板显示的是这4个值。Pos X和Pos Y表示Pivot与锚点的距离。Width和Height表示该UI对象的宽度和高度。
 
 - 当min X = max X时，即4个锚点连成一条垂直线时，
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_5.png)
+![image.png](../../assets/img/rectTransform_5.png)
 
 此时Pos Y/Height被Top/Bottom代替。Pos X表示Pivot与锚点连线的距离。Width表示该UI对象宽度。Top和Bottom表示该UI对象上边与下边分别与上下锚点的距离（有点像写网页前端的那些padding的感觉）。这种情况下，该对象的高度会随着父对象高度变化而变化。Top和Bottom值不变下，父对象高度越大，子对象高度也越大。
 
 - 当min Y = max Y时，即4个锚点连成一条水平线时，
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_6.png)
+![image.png](../../assets/img/rectTransform_6.png)
 
 同理，此时Pos X/Width被Left/Right代替。Pos Y表示Pivot与锚点连线的距离。Height表示该UI对象高度。Left和Right表示该UI对象左边与右边分别与左右锚点的距离。这种情况下，该对象的宽度会随着父对象宽度变化而变化。Left和Right值不变下，父对象宽度越大，子对象宽度也越大。
 
 - 当min X != max X且min Y != max Y，即4个锚点分开时，
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_7.png)
+![image.png](../../assets/img/rectTransform_7.png)
 
 此时PosX/PosY/Width/Height被Left/Right/Top/Bottom代替。分别表示该UI四边距离锚点的四边的距离。这种情况下，该对象的宽度和高度都会随着父对象变化而变化。
 
@@ -61,11 +61,11 @@ minXY与maxXY四个值的物理意义如上图所示，决定了4个锚点在父
 
 此外，如果父物体有Layout Group组件，某些属性会被Layout Group组件控制，无法手动调整。
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_8.png)
+![image.png](../../assets/img/rectTransform_8.png)
 
 ## Anchor Preset
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_9.png)
+![image.png](../../assets/img/rectTransform_9.png)
 
 Unity提供了一些Anchor点的预设（主要是4个锚点在同一点情况的不同位置，按住Shift可以同时设置锚点，按住Alt可以设置位置。主要是给UI同学用的。
 
@@ -79,7 +79,7 @@ Unity提供了一些Anchor点的预设（主要是4个锚点在同一点情况�
 
 anchordPosition为Pivot在自身区域的比例，映射到Anchors上的点，再与Pivot的相对位置，就是anchoredPosition。如网图所示。
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_10.png)
+![image.png](../../assets/img/rectTransform_10.png)
 
 当4个锚点在同一点时，anchordPosition为Pivot位置与Anchor位置的距离。可以通过修改anchordPosition达到移动UI的效果（只修改anchordPosition不会影响UI大小）。
 
@@ -87,11 +87,11 @@ anchordPosition为Pivot在自身区域的比例，映射到Anchors上的点，�
 
 即锚点的Min和Max值。修改该值时，UGUI会使anchordPosition不变，以及Left/Right/Top/Bottom四个值不变，而因为Anchor变了，所以该UI的大小会变。
 
-![anchorMax.gif](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_11.gif)
+![anchorMax.gif](../../assets/img/rectTransform_11.gif)
 
 ### offsetMin/offsetMax
 
-![image.png](https://github.com/JanHoChoi/janhochoi.github.io/blob/main/assets/img/rectTransform_12.png)
+![image.png](../../assets/img/rectTransform_12.png)
 
 offsetMin为左下锚点到UI左下角的向量；offsetMax为右上锚点到UI右上角的向量。与Rotate以及Scale无关。
 
