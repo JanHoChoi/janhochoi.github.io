@@ -83,6 +83,10 @@ links1:
     url:          /blog/unity_shader
     type:         unity_shader
     external:     false
+  - name:         UGUI
+    url:          /blog/ugui
+    type:         ugui
+    external:     false
   - name:         Wwise相关
     url:          /blog/wwise
     type:         wwise
