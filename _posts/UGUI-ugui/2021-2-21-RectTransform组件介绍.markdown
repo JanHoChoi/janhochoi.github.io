@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 博客模板
+title: RectTransform组件介绍
 date:  2021-02-21 09:45:00 +0800
 description: 总结
 img: 404.jpeg # Add image post (optional)
