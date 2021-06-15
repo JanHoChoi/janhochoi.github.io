@@ -75,17 +75,17 @@ Unity提供了一些Anchor点的预设（主要是4个锚点在同一点情况�
 
 子物体的局部空间位置。子物体的pivot点所在位置与父物体的pivot点所在位置的差值。
 
-### anchordPosition
+### anchoredPosition
 
-anchordPosition为Pivot在自身区域的比例，映射到Anchors上的点，再与Pivot的相对位置，就是anchoredPosition。如网图所示。
+anchoredPosition为Pivot在自身区域的比例，映射到Anchors上的点，再与Pivot的相对位置，就是anchoredPosition。如网图所示。
 
 ![image.png](../../assets/img/rectTransform_10.png)
 
-当4个锚点在同一点时，anchordPosition为Pivot位置与Anchor位置的距离。可以通过修改anchordPosition达到移动UI的效果（只修改anchordPosition不会影响UI大小）。
+当4个锚点在同一点时，anchoredPosition为Pivot位置与Anchor位置的距离。可以通过修改anchoredPosition达到移动UI的效果（只修改anchoredPosition不会影响UI大小）。
 
 ### anchorMin/anchorMax
 
-即锚点的Min和Max值。修改该值时，UGUI会使anchordPosition不变，以及Left/Right/Top/Bottom四个值不变，而因为Anchor变了，所以该UI的大小会变。
+即锚点的Min和Max值。修改该值时，UGUI会使anchoredPosition不变，以及Left/Right/Top/Bottom四个值不变，而因为Anchor变了，所以该UI的大小会变。
 
 ![anchorMax.gif](../../assets/img/rectTransform_11.gif)
 
