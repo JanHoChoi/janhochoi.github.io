@@ -93,7 +93,7 @@ anchoredPosition为Pivot在自身区域的比例，映射到Anchors上的点，�
 
 ![image.png](../../assets/img/rectTransform_12.png)
 
-offsetMin为左下锚点到UI左下角的向量；offsetMax为右上锚点到UI右上角的向量。与Rotate以及Scale无关。
+offsetMin为左下锚点到UI左下角的向量，即offsetMin=(left, bottom)；offsetMax为右上锚点到UI右上角的向量，即offsetMax=(right, top)。与Rotate以及Scale无关。
 
 ### sizeDelta
 
