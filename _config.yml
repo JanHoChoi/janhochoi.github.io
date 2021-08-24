@@ -79,6 +79,10 @@ links1:
     url:          /
     type:         recent
     external:     false
+  - name:         Lua
+    url:          /blog/lua
+    type:         lua
+    external:     false
   - name:         Unity Shader相关
     url:          /blog/unity_shader
     type:         unity_shader
@@ -97,10 +101,11 @@ links1:
     external:     false
 
 blog_1:    recent
-blog_2:    unity_shader
-blog_3:    ugui
-blog_4:    wwise
-blog_5:    others
+blog_2:    lua
+blog_3:    unity_shader
+blog_4:    ugui
+blog_5:    wwise
+blog_99:    others
 
 
 
