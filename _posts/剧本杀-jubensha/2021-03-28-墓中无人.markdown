@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 神尘总结
-date:  2021-03-13 13:30:00 +0800
+title: 墓中无人总结
+date:  2021-03-28 10:30:00 +0800
 description: 总结
-img: shenchen.jpeg # Add image post (optional)
+img: muzhongwuren.jpeg # Add image post (optional)
 tags: [剧本杀]
 author: # Add name author (optional)
 jubensha: true
