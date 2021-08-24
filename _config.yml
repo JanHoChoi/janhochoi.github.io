@@ -91,10 +91,6 @@ links1:
     url:          /blog/wwise
     type:         wwise
     external:     false
-  - name:         剧本杀
-    url:          /blog/jubensha
-    type:         jubensha
-    external:     false
   - name:         其他
     url:          /blog/others
     type:         others
@@ -104,8 +100,7 @@ blog_1:    recent
 blog_2:    unity_shader
 blog_3:    ugui
 blog_4:    wwise
-blog_5:    jubensha
-blog_6:    others
+blog_5:    others
 
 
 
