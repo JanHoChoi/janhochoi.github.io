@@ -11,8 +11,177 @@ python: true
 
 {{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
 
-# 一级目录
+# Python装饰器学习
 
-## 二级目录
+## 前置知识
 
-### 三级目录
+1. 函数可以作为变量，也可以作为参数去传递
+
+```python
+def print_func(name):
+      return "Hello, " + name
+
+temp = print_func
+print(temp("world!"))
+
+# Hello, world!
+```
+
+2. 函数可以作为参数去传递
+
+```python
+def print_func():
+      return "Hello, world!"
+
+def call_func(func):
+      return func()
+
+print(call_func(print_func))
+
+# Hello, world!
+```
+
+3. 函数嵌套函数
+
+```python
+def hello_text(name):
+      return "Hello, " + name + "!"
+
+def func_wrap(func):
+      def add_text_func(name):
+            return "Function wrap: " + func(name)
+      return add_text_func
+
+warpped_func = func_wrap(hello_text)
+print(warpped_func("John"))
+
+# Hello, John! 
+```
+
+## 函数装饰器
+
+示例：
+
+```python
+def func_wrap(func):
+      def wrapped_func(name):
+            return "Function wrap: " + func(name)
+      return wrapped_func
+
+@func_wrap
+def hello_text(name):
+      return "Hello, " + name + "!"
+
+print(hello_text("John"))
+```
+
+这时，发现wrapped_func中的字符串是定死的，接下来需要在不重新写一个新的装饰器的前提下，尝试通过传参修改装饰器的内容。
+
+```python
+def func_wrap(text):
+      def origin_wrap(func):
+            def wrapped_func(name):
+                  return "Function wrap " + text + " :" + func(name)
+            return wrapped_func
+      return origin_wrap
+
+@func_wrap("Test")
+def hello_text(name):
+      return "Hello, " + name + "!"
+
+print(hello_text("John"))
+
+# Function wrap Test:Hello, John!
+```
+
+理解：首先func_wrap("Test")的结果是一个函数origin_wrap。@origin_wrap时，把hello_text当作参数传进去。而此时由于闭包，origin_wrap可以访问到text变量，从而达到想要的效果。
+
+## 函数装饰器的问题
+
+如果用装饰器下，函数的\_\_name\_\_会显示出错。
+
+```python
+def func_wrap(text):
+      def origin_wrap(func):
+            def wrapped_func(name):
+                  return "Function wrap " + text + " :" + func(name)
+            return wrapped_func
+      return origin_wrap
+
+@func_wrap("Test")
+def hello_text(name):
+      return "Hello, " + name + "!"
+
+print(hello_text("John"))		# Function wrap Test :Hello, John!
+print(hello_text.__name__)		# wrapped_func [wrong!]
+```
+
+需要从functools库中import一个组件wraps，才能保证正确性。
+
+```python
+from functools import wraps
+
+def func_wrap(text):
+      def origin_wrap(func):
+            @wraps(func)
+            def wrapped_func(name):
+                  return "Function wrap " + text + " :" + func(name)
+            return wrapped_func
+      return origin_wrap
+
+@func_wrap("Test")
+def hello_text(name):
+      return "Hello, " + name + "!"
+
+print(hello_text("John"))		# Function wrap Test :Hello, John!
+print(hello_text.__name__)		# hello_text [correct!]
+```
+
+## 类装饰器
+
+除了function可以用()去call以外，类class的实例在重写了\_\_call\_\_方法后也是一种callable的object。
+
+```python
+class Fibonacci:
+    def __init__(self):
+        self.cache = {}
+    def __call__(self, n):
+        if n not in self.cache:
+            if n == 0:
+                self.cache[0] = 0
+            elif n == 1:
+                self.cache[1] = 1
+            else:
+                self.cache[n] = self.__call__(n-1) + self.__call__(n-2)
+        return self.cache[n]
+fib = Fibonacci()
+for i in range(15):
+    print(fib(i), end=", ")
+    
+# 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377,
+```
+
+同理可以用类去装饰一个函数。
+
+```python
+class ClsDecorator:
+	def __init__(self, func):
+		self.func = func
+	def __call__(self, *args, **kwargs):
+		print("In Cls Decorator")
+		self.func(args, kwargs)
+
+@ClsDecorator
+def HelloWorld(*args, **kwargs):
+	print("Hello, world!")
+
+HelloWorld()
+
+# In Cls Decorator
+# Hello, world!
+```
+
+## 总结
+
+装饰器的本质可以理解成为，一个callable的decorator（一般是函数、类），接收一个被装饰的对象作为参数（一般是函数、方法、类），返回一个新的对象，返回的结果可以是callable也可以不。
+
