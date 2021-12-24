@@ -3,7 +3,7 @@ layout: post
 title: Python装饰器学习
 date:  2021-12-24 15:00:00 +0800
 description: 学习Python装饰器。
-img: python_logo # Add image post (optional)
+img: python_logo.png # Add image post (optional)
 tags: [Python]
 author: # Add name author (optional)
 python: true
