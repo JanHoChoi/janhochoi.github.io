@@ -95,6 +95,9 @@ links1:
     url:          /blog/wwise
     type:         wwise
     external:     false
+  - name:         Python
+    url:          /blog/python
+    type:         python
   - name:         其他
     url:          /blog/others
     type:         others
@@ -105,6 +108,7 @@ blog_2:    lua
 blog_3:    unity_shader
 blog_4:    ugui
 blog_5:    wwise
+blog_6:    python
 blog_99:    others
 
 
