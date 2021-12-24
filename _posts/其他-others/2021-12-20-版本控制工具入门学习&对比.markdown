@@ -1,0 +1,159 @@
+---
+layout: post
+title: 版本控制工具入门学习&对比
+date:  2021-12-20 20:30:00 +0800
+description: 学习和对比Git、Svn、P4的相关操作
+img: 404.jpeg # Add image post (optional)
+tags: [其他]
+author: # Add name author (optional)
+others: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# 版本控制工具入门学习&对比
+
+## 简介
+
+最近在学习P4（Perforce，以下都简称为P4）的版本控制工具。在学习过程中，免不了有一些名词/操作代表的含义/行为在SVN、Git、P4有所区别。
+
+分别用到的图形界面工具是TortoiseSVN、sourcetree、P4V。
+
+用这篇博客整理上述内容。
+
+## 常规操作对比
+
+### 前置参数设置
+
+SVN和Git在安装之后都不需要额外的前置配置，只需要安装+配环境变量，后续在检出资源时才会验证相关信息。
+
+验证安装是否成功：
+
+```
+# svn
+svn --version
+
+# git
+git --version
+
+# p4
+p4 -V
+```
+
+验证P4是否已连上远程：
+
+```
+p4 info
+# 如果提示Perforce Client Error,即P4PORT设置错误
+p4 set P4PORT=ssl:hostname:port
+# 如果是第一次连接
+p4 trust
+```
+
+### 检出资源
+
+首先要了解仓库repository/depot的概念。
+
+对比集中式和分布式版本控制系统：[廖雪峰：集中式vs分布式](https://www.liaoxuefeng.com/wiki/896043488029600/896202780297248)
+
+其中Perforce和SVN都是集中式版本控制系统，而Git是分布式版本控制系统。
+
+```
+# svn
+svn checkout(co) svn_url
+
+# git
+git clone git_url
+
+# perforce
+p4 client -S stream_name client_name # 创建工作区并绑定到某个stream
+p4 set P4CLIENT=client_name	# 切换到对应的工作区
+p4 sync	... # 检出文件
+```
+
+注：
+
+- 都支持sparse-checkout，允许只检出某个子目录的资源；
+
+### 更新远端资源
+
+```
+# svn
+svn update
+
+# git
+git fetch
+git merge
+
+# perforce
+p4 sync
+```
+
+注：
+
+- 如果用户删除了本地某个文件，svn update会自动restore该文件，而git则不会这样做，因为git把这个删除视作用户对文件的操作，不会自动还原掉。同时p4也不会自动还原该文件；
+- 三者都可以只更新部分文件；
+
+### 提交资源
+
+```
+# svn
+svn status
+svn commit -m "message" file_path
+
+# git
+git status
+git add file_path
+git commit -m "message"
+git push
+
+# perforce
+p4 status
+p4 add/edit/delete file_path # 或者直接p4 reconcile
+p4 submit -d "description"
+```
+
+svn的提交比较方便，不需要进行特别的操作。如果修改的资源过时了，则会提醒用户update后再重新提交，update之后如果有冲突则修改。
+
+git在本地工作目录（workspace）修改之后，需要把修改通过add提交到缓存区（index），再通过push提交到服务器中。如果当前的分支不是最新，也会提醒用户push失败。可以fetch+merge或者pull后，如果有冲突则修改，再次push。
+
+p4在提交前也需要先checkout（edit/add/delete）表明要修改这些文件后，才能提交修改。正常流程一般是先checkout，再修改，再提交。如果资源非最新，会submit失败，并且提示out of date files，需要resolve之后才能重新submit。需要注意：如果没有checkout的文件，向服务器请求get latest revision时，不会提醒用户去resolve，从而会覆盖本地修改，导致修改丢失。
+
+### 恢复文件状态
+
+首先是修改的文件未提交的状态。
+
+```
+# svn
+svn revert file_name
+svn revert -R file_dir	# 递归revert整个目录的文件
+
+# git
+git checkout file_name	# checkout某个文件到某个节点
+git checkout file_dir	# discard整个文件夹的修改
+
+# p4
+# 如果没有reconcile，则先reconcile
+p4 revert file_name		# revert某个文件
+p4 revert file_dir/...	# revert某个文件夹下的所有文件
+```
+
+其次是修改的文件已经提交了，想回到之前某个节点的状态。
+
+```
+# svn
+svn merge -r HEAD:revision file_name
+cd file_dir
+svn merge -r HEAD:revision ./
+
+# git
+git checkout commit -- file_name
+git checkout commit -- file_dir
+
+# p4
+p4 sync file_name#revision
+```
+
+## 高阶操作对比
+
+TODO，目前项目的Perforce应该用不上特别多高端的操作。
