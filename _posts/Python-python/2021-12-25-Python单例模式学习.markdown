@@ -1,0 +1,33 @@
+---
+layout: post
+title: Python单例模式学习
+date:  2021-12-25 15:00:00 +0800
+description: 学习Python单例模式。
+img: python_logo.png # Add image post (optional)
+tags: [Python]
+author: # Add name author (optional)
+python: true
+---
+
+{{site.label1}} <a href="https://github.com/janhochoi/" target="\_blank">JanHoChoi</a> {{site.label2}}
+
+# Python单例模式学习
+
+## 背景
+
+python的单例模式感觉有很多不同的写法，总结感受一下。
+
+## 使用模块实现
+
+```python
+class Singleton(object):
+	pass
+	
+g_instance = None
+def GetInstance():
+    global g_instance
+	if g_instance is None:
+		g_instance = Singleton()
+	return g_instance
+```
+
