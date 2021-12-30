@@ -31,3 +31,116 @@ def GetInstance():
 	return g_instance
 ```
 
+其他模块使用这个单例时，直接import其中的GetInstance()方法即可。
+
+但是当多线程时，这样做是不安全的（包括下面的几个做法同理）。比如当第一个Singleton()初始化开始而未返回结果时，另一个线程调用GetInstance()方法。此时，g_instance仍然是None，会再次初始化另一个Singleton()的实例。
+
+```python
+class Singleton(object):
+	def __init__(self):
+		super(Singleton, self).__init__()
+		time.sleep(0.5)	# 可以延长初始化时间
+
+g_instance = None
+
+def GetInstance():
+	global g_instance
+	if g_instance is None:
+		g_instance = Singleton()
+	return g_instance
+
+def task():
+	obj = GetInstance()
+	print(obj)
+
+if __name__ == "__main__":
+	for i in range(5):
+		t = threading.Thread(target=task)
+		t.start()
+    
+# <Singleton.Singleton object at 0x102c4dfa0>
+# <Singleton.Singleton object at 0x102c4d5e0>
+# ...
+```
+
+想要解决多线程可能带来的问题（游戏的话脚本层的Python用不上，纯写着玩），需要加锁。
+
+```python
+# 其他部分一样
+g_instance = None
+threading_lock = threading.Lock()
+
+def GetInstance():
+	global g_instance
+	if g_instance is None:
+		threading_lock.acquire()
+		if g_instance is None:	# 记住要再判断一次
+			g_instance = Singleton()
+		threading_lock.release()
+	return g_instance
+```
+
+## 使用装饰器实现
+
+```python
+def Singleton(cls):
+	_instance = None
+	_lock = threading.Lock()
+
+	def _singleton(*args, **kargs):
+		nonlocal _instance, _lock
+		if _instance is None:
+			_lock.acquire()
+			if _instance is None:
+				_instance = cls(*args, **kargs)
+			_lock.release()
+		return _instance
+	return _singleton
+
+
+@Singleton
+class A(object):
+  pass
+```
+
+同理，也是类似的实现，使用装饰器的话，会方便不同的单例类复用。
+
+## 使用类实现
+
+```python
+class Singleton(object):
+	_instance_lock = threading.Lock()
+
+	def __init__(self, *args, **kwargs):
+		pass
+
+	@classmethod
+	def instance(cls, *args, **kwargs):
+		if not hasattr(Singleton, "_instance"):
+			cls._instance_lock.acquire()
+			if not hasattr(Singleton, "_instance"):
+				cls._instance = Singleton(*args, **kwargs)
+			cls._instance_lock.release()
+		return cls._instance
+```
+
+不足的地方是在使用这个类的时候，需要用Singleton.instance()，而Singleton()得到的依然是实例。
+
+所以更好的是通过重载new方法，来实现单例。
+
+```python
+class Singleton(object):
+	_instance_lock = threading.Lock()
+
+	def __init__(self, *args, **kwargs):
+		pass
+
+	def __new__(cls, *args, **kwargs):
+		if not hasattr(Singleton, "_instance"):
+			cls._instance_lock.acquire()
+			if not hasattr(Singleton, "_instance"):
+				cls._instance = super().__new__(cls)
+			cls._instance_lock.release()
+		return cls._instance
+```
+
