@@ -107,6 +107,8 @@ class A(object):
 
 ## 使用类实现
 
+### 通过类方法实现
+
 ```python
 class Singleton(object):
 	_instance_lock = threading.Lock()
@@ -126,6 +128,8 @@ class Singleton(object):
 
 不足的地方是在使用这个类的时候，需要用Singleton.instance()，而Singleton()得到的依然是实例。
 
+### 通过重载new方法实现
+
 所以更好的是通过重载new方法，来实现单例。
 
 ```python
@@ -144,3 +148,54 @@ class Singleton(object):
 		return cls._instance
 ```
 
+## 使用metaclass实现
+
+### 动态创建class
+
+```python
+class A(object):
+	pass
+	
+print(type(A))	# <type 'type'>
+```
+
+证明了类A是type的一个实例。使用type显式创建一个class，用法如下：
+
+```python
+cls = type("classTest", (), {})
+print(cls)	# <class '__main__.classTest'>
+```
+
+其中第一个参数是类名的字符串，()里面可以填父类，{}里面可以填类属性。
+
+### metaclass的作用
+
+metaclass的作用是在每个class被创建时，对生成的class进行订制的修改，也就是用来动态创建class的class。
+
+实际上，type就是一个metaclass。
+
+注：metaclass不需要必须是一个class，只要是一个callable的东西就可以。
+
+### 自定义metaclass实现singleton
+
+```python
+class SingletonMetaClass(type):
+	_instance = {}
+	_lock = threading.Lock()
+
+	def __call__(cls, *args, **kwargs):
+		if cls not in cls._instance:
+			cls._lock.acquire()
+			if cls not in cls._instance:
+				cls._instance[cls] = super(SingletonMetaClass, cls).__call__(*args, **kwargs)
+			cls._lock.release()
+		return cls._instance[cls]
+
+
+class A(object, metaclass=SingletonMetaClass):
+
+	def __init__(self):
+		pass
+```
+
+需要注意，如果不同的类A和B都用了SingletonMetaClass作为metaclass，那么他们实际也共享了_lock。
