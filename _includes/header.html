@@ -56,6 +56,14 @@
 				 {% endfor %}
 			 {% endif %}
 
+			 {% if link.type == site.blog_7 %}
+				{% for post in site.posts %}
+				   {% if post.opengl%}
+						{% assign count = count | plus: 1 %}
+				   {% endif %}
+				 {% endfor %}
+			 {% endif %}
+
 			 {% if link.type == site.blog_99 %}
 				{% for post in site.posts %}
 				   {% if post.others%}

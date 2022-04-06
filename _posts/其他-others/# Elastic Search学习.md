@@ -16,6 +16,8 @@ Elastic Search是一个分布式、可拓展、实时的搜索与数据分析引
 
 ## 数据源
 
+
+
 ## 附录
 
 ### 关系型数据库和非关系型数据库的对比
@@ -36,9 +38,9 @@ Elastic Search是一个分布式、可拓展、实时的搜索与数据分析引
 
 ### 一些名词含义解释
 
-- 索引index
+- 索引*index*
 
-  作为名词时，一个【索引】类似于关系型数据库的一个database，是一个存储关系型文档的地方。 index的复数词为indices或indexes。一个【索引】应该是因共同的特性被分组到一起的文档集合。 例如，你可能存储所有的产品在【索引】products中，而存储所有销售的交易到【索引】sales中。
+  作为名词时，一个索引类似于关系型数据库的一个database，是一个存储关系型文档的地方。 *索引* (*index*) 的复数词为 *indices* 或 *indexes* 。
 
   作为动词时，索引一个文档，等价于存储一个文档到一个索引中，以便被查询。类似sql语句的insert新数据或者update旧数据。
 
@@ -46,12 +48,3 @@ Elastic Search是一个分布式、可拓展、实时的搜索与数据分析引
 
 搜索
 
-- 文档Document
-
-通常情况，术语【对象】和【文档】可以互相替换。不过，有一个区别： 一个对象仅仅是类似于 hash 、 hashmap 、字典或者关联数组的 JSON 对象，对象中也可以嵌套其他的对象。 对象可能包含了另外一些对象。在 Elasticsearch 中，【文档】有着特定的含义。它是指最顶层或者根对象, 这个根对象被序列化成 JSON 并存储到 Elasticsearch 中，指定了唯一 ID。
-
-- 别名alias
-
-索引的别名像一个快捷方式或软连接，可以指向一个或多个索引。
-
-https://www.elastic.co/guide/cn/elasticsearch/guide/current/index-aliases.html

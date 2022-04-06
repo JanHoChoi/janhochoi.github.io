@@ -98,6 +98,15 @@ links1:
   - name:         Python
     url:          /blog/python
     type:         python
+    external:     false
+  - name:         OpenGL
+    url:          /blog/opengl
+    type:         opengl
+    external:     false
+  - name:         数据结构与算法
+    url:          /blog/data_structure_and_algorithm
+    type:         data_structure_and_algorithm
+    external:     false
   - name:         其他
     url:          /blog/others
     type:         others
@@ -109,6 +118,8 @@ blog_3:    unity_shader
 blog_4:    ugui
 blog_5:    wwise
 blog_6:    python
+blog_7:    opengl
+blog_8:    data_structure_and_algorithm
 blog_99:    others
 
 
